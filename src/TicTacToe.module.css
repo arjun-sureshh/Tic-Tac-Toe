@@ -1,0 +1,206 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+
+}
+
+.body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    background: linear-gradient(to bottom right, #041011, #0b1b20, #09262d);
+  color: #FFFFFF; 
+  height: 100vh;
+   
+
+}
+/* .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(14, 0, 0,0.4); Adjust opacity for darker/lighter shade
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  } */
+
+.label {
+    font-size: 1.7em;
+    font-weight: 550;
+    margin-bottom: 14px;
+}
+
+.container {
+    border-radius: 10px;
+
+    position: relative;
+    /* Make the container the reference for absolute positioning */
+
+}
+
+.container .box_row {
+    display: flex;
+}
+
+ .boxs {
+    width: 120px;
+    height: 120px;
+    border: 2px solid rgb(118, 116, 116);
+    border-radius: 10px;
+    margin: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2.5em;
+    font-weight: 700;
+    color: #fdfbfb;
+    background-color:#151212 ;
+    cursor: pointer;
+
+}
+
+.boxs:hover {
+    /* transform: scale(1.02); */
+    box-shadow: 0 0 10px #5e5d5d;
+    background-color: rgb(23, 24, 24);
+}
+
+.restart {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 130px;
+    height: 50px;
+    color: #efebeb;
+    background-color: rgb(16, 16, 17);
+    border-radius: 8px;
+}
+
+.restart button {
+    background: none;
+    border: none;
+    color: #e1eaeb;
+    cursor: pointer;
+    width: 120px;
+    height: 50px;
+    font-weight: 500;
+    font-size: 1em;
+
+}
+
+.draw {
+    color: rgb(224, 76, 76);
+}
+
+.winner {
+    color: rgb(36, 205, 36);
+}
+
+/* .X{
+    color: rgb(6, 251, 251);
+}
+.O{
+    color: rgb(247, 115, 8);
+} */
+.default{
+    color: #f9f8f8;
+}
+
+/* Outline colors */
+.X {
+    color: #dfe9e9; /* White text */
+  text-shadow: 0 0 5px rgb(8, 231, 231), 0 0 10px rgb(229, 239, 239), 0 0 15px rgb(0, 255, 255);
+    /* Light blue outline for "X" */
+}
+
+.O {
+    color: #FFFFFF; /* White text */
+  text-shadow: 0 0 5px #FFA500, 0 0 10px #FFA500, 0 0 15px #FFA500;
+    /* Orange outline for "O" */
+}
+
+/* Default color (optional, e.g., empty cells) */
+
+
+
+/* ................................strict css.......................  */
+
+.strike {
+    position: absolute;
+    background-color: #b4b1b0;
+    box-shadow: 0 0 5px rgb(216, 94, 6), 0 0 10px rgb(5, 15, 17), 0 0 15px rgb(0, 1, 15);
+}
+
+.strike_row_1 {
+    width: 95%;
+    height: 4px;
+    top: 15.5%;
+    left: 2.5%;
+}
+
+.strike_row_2 {
+    width: 95%;
+    height: 4px;
+    top: 48.5%;
+    left: 2.5%;
+}
+
+.strike_row_3 {
+    width: 95%;
+    height: 4px;
+    top: 83.5%;
+    left: 2.5%;
+}
+
+.strike_column_1 {
+    height: 95%;
+    width: 4px;
+    left: 16%;
+    top: 2%
+}
+
+.strike_column_2 {
+    height: 95%;
+    width: 4px;
+    left: 49.5%;
+    top: 2%
+}
+
+.strike_column_3 {
+    height: 95%;
+    width: 4px;
+    left: 83.5%;
+    top: 2%
+}
+
+.strike_diagonal_2 {
+    width: 90%;
+    height: 4px;
+    left: 5%;
+    top: 50%;
+    transform: skewY(-45deg);
+}
+
+.strike_diagonal_1 {
+    width: 90%;
+    height: 4px;
+    left: 5%;
+    top: 50%;
+    transform: skewY(45deg);
+}
+.Xwinnertext{
+    color: #d0d2d2; /* White text */
+    text-shadow: 0 0 5px rgb(6, 6, 8), 0 0 10px rgb(15, 108, 120), 0 0 15px rgb(9, 151, 151);
+}
+.Owinnertext{
+    color: #d2d1d0; /* White text */
+    text-shadow: 0 0 5px rgb(6, 6, 8), 0 0 10px rgb(120, 90, 15), 0 0 15px rgb(208, 166, 13);
+}
