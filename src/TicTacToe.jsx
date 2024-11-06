@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import Styles from './TicTacToe.module.css'
-import Strike from './Strike'
+import Strike from './Components/Strike/Strike'
+import Popup from './Components/Popup/Popup'
+import Player from './Components/Player/Player'
 
 const TicTacToe = () => {
     const initialboard = Array(9).fill("")
@@ -8,6 +10,13 @@ const TicTacToe = () => {
     const [player, setplayer] = useState(true)
     const [gamestatus, setgamestatus] = useState(null)
     const [strike, setstrike] = useState([])
+    const [playername, setplayername] = useState({
+        PlayerX:'',
+        PlayerO:'',
+    })
+    const [showPopup, setShowPopup] = useState(false);
+    
+
 
     const handleclick = (index) => {
         if (gamestatus) {
@@ -25,13 +34,13 @@ const TicTacToe = () => {
         if (winnerresult) {
             const { winner, combination } = winnerresult;
             setstrike((combination))
-            // setTimeout(() => {
-                setgamestatus(`Congratulations! Player ${winner} wins!`);
-            //     alert(`Congratulations! Player ${winner} wins! `);
-            // }, 200); // 1000 ms = 1 second delay
+           
+               {winner === 'X' && setgamestatus(`GAME OVER: '${playername.PlayerX}' wins!`);}
+               {winner === 'O' && setgamestatus(`GAME OVER: '${playername.PlayerO}' wins!`);}
+           
         }
         else if (newboard.every((square) => square !== "")) {
-            setgamestatus("Game over: No winners");
+            setgamestatus("GAME OVER: No Winners");
         }
         else {
             setplayer((previous) => !previous)
@@ -45,34 +54,65 @@ const TicTacToe = () => {
         setplayer(true)
         setgamestatus(null)
         setstrike([]);
+        setShowPopup(false)
     }
+
+   const PlayerNameChange  = (e)=>{
+      setplayername({
+        ...playername,
+        [e.target.name]:e.target.value
+      })
+   }
+
+
+
+   useEffect(() => {
+    if (gamestatus) {
+      // Apply a delay before showing the popup
+      const timer = setTimeout(() => {
+        setShowPopup(true);
+      }, 350); // 1000 ms (1 second) delay
+
+      // Clear the timer if gamestatus changes or component unmounts
+      return () => clearTimeout(timer);
+    } else {
+      setShowPopup(false); // Hide popup if gamestatus is false
+    }
+  }, [gamestatus]);
 
     return (
         <div className={Styles.body} >
             
             <div className={Styles.label}>
-                <h1 className={gamestatus === 'Game over: No winners!' 
-                    ? Styles.draw 
-                    : gamestatus && gamestatus.includes('Congratulations!') 
-                    ? Styles.winner 
-                    : Styles.default
-                }>
+                <h1  className={Styles.default} >
                    Tic Tac Toe
                 </h1>
             </div>
-            <div className={Styles.label}>
-                <h2 className={
-                    gamestatus === 'Game over: No winners'
-                        ? Styles.draw
-                        : gamestatus && gamestatus.includes('Congratulations!')
-                            ? (gamestatus.includes('O') ? Styles.Owinnertext : Styles.Xwinnertext)
-                            : Styles.default
-                }>
-                    {gamestatus}
-                </h2>
-            </div>
+           <div className={Styles.wrapper}>
+           <div className={Styles.Set_player_name}>
+                    <Player 
+                    type='text'
+                    className={ Styles.input_name}
+                    className_row={ player ? Styles.turn_to_X : Styles.default_nameStyle}
+                    name='PlayerX'
+                    placeholder='Player  X'
+                    value={playername.PlayerX}
+                    onchange={PlayerNameChange}/>
+
+                    <Player 
+                    type='text'
+                    className={Styles.input_name }
+                    className_row={ player ? Styles.default_nameStyle : Styles.turn_to_O}
+                    name='PlayerO'
+                    placeholder='Player  O'
+                    value={playername.PlayerO}
+                    onchange={PlayerNameChange}/>
+                   
+                </div>
             <div className={Styles.container}>
-                 { strike && <Strike strike={strike} />}
+                 { strike && <Strike strike={strike} />} {/* calling the Strike component */}
+
+                 {showPopup && <Popup restart={restart} gamestatus={gamestatus} playerX={playername.PlayerX} playerO={playername.PlayerO} />}      {/* calling the Popup component for the result */}
                 <div className={Styles.box_row}>
                     <div className={Styles.boxs} onClick={() => handleclick(0)}><h2 className={board[0] === 'X' ? Styles.X : Styles.O}>{board[0]}</h2></div>
                     <div className={Styles.boxs} onClick={() => handleclick(1)}><h2 className={board[1] === 'X' ? Styles.X : Styles.O}>{board[1]}</h2></div>
@@ -89,9 +129,8 @@ const TicTacToe = () => {
                     <div className={Styles.boxs} onClick={() => handleclick(8)}><h2 className={board[8] === 'X' ? Styles.X : Styles.O}>{board[8]}</h2></div>
                 </div>
             </div>
-            {gamestatus && <div className={Styles.restart}>
-                <button onClick={restart}>Play Again</button>
-            </div>}
+           
+            </div>
             </div>
       
     )

@@ -1,0 +1,66 @@
+
+/* ................................strict css.......................  */
+
+.strike {
+    position: absolute;
+    background-color: #b4b1b0;
+    box-shadow: 0 0 5px rgb(216, 94, 6), 0 0 10px rgb(5, 15, 17), 0 0 15px rgb(0, 1, 15);
+}
+
+.strike_row_1 {
+    width: 95%;
+    height: 4px;
+    top: 15.5%;
+    left: 2.5%;
+}
+
+.strike_row_2 {
+    width: 95%;
+    height: 4px;
+    top: 48.5%;
+    left: 2.5%;
+}
+
+.strike_row_3 {
+    width: 95%;
+    height: 4px;
+    top: 83.5%;
+    left: 2.5%;
+}
+
+.strike_column_1 {
+    height: 95%;
+    width: 4px;
+    left: 16%;
+    top: 2%
+}
+
+.strike_column_2 {
+    height: 95%;
+    width: 4px;
+    left: 49.5%;
+    top: 2%
+}
+
+.strike_column_3 {
+    height: 95%;
+    width: 4px;
+    left: 83.5%;
+    top: 2%
+}
+
+.strike_diagonal_2 {
+    width: 90%;
+    height: 4px;
+    left: 5%;
+    top: 50%;
+    transform: skewY(-45deg);
+}
+
+.strike_diagonal_1 {
+    width: 90%;
+    height: 4px;
+    left: 5%;
+    top: 50%;
+    transform: skewY(45deg);
+}
